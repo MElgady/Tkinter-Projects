@@ -9,7 +9,8 @@
 
 from tkinter import Tk, Frame, Label, Entry, Button
 
-# TODO: Find a way to avoid repeats of Tkinter widgets
+# TODO: Find a way to avoid repeating Tkinter widgets for each
+# entry field
 
 
 def fahrenheit_to_celsius():

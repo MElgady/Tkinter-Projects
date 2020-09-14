@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['temp_converter.py'],
-             pathex=['C:\\Users\\user\\Desktop\\Programming\\Py_GUI_Tkinter'],
+             pathex=['C:\\Users\\user\\Desktop\\Programming\\py_gui_tkinter'],
              binaries=[],
              datas=[],
              hiddenimports=[],
