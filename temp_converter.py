@@ -9,13 +9,7 @@
 
 from tkinter import Tk, Frame, Label, Entry, Button
 
-"""
-TODO:
-Create a function that allows a new 
-entry, field, label widget and their location.
-(Use the Fahrenheit to Kelvin as the conversion!)
-
-"""
+# TODO: Find a way to avoid repeats of Tkinter widgets
 
 
 def fahrenheit_to_celsius():
@@ -52,6 +46,22 @@ def celsius_to_fahrenheit():
         pass
 
 
+def fahrenheit_to_kelvin():
+    """
+    Convert Fahrenheit to Kelvin and insert
+    into label_result3 widget.
+    """
+
+    fahrenheit = entry_temp3.get()
+
+    if fahrenheit != "":
+        celsius = (5 / 9) * (float(fahrenheit) - 32) + 273.15
+
+        label_result3["text"] = f"{round(celsius, 2)} \N{DEGREE SIGN}K"
+    else:
+        pass
+
+
 # Set up the window
 window = Tk()
 window.title("Temperature Converter")
@@ -64,6 +74,30 @@ window.resizable(width=True, height=False)
 form_entry = Frame(master=window)
 entry_temp = Entry(master=form_entry, width=10)
 label_temp = Label(master=form_entry, text="\N{DEGREE FAHRENHEIT}")
+
+# Sets location of entry field and its
+# label using grid method
+entry_temp.grid(row=0, column=0, sticky="e")
+# sticky="e" sets entry to be at right edge of cell
+# sticky="w" sets label to be at left edge of cell
+label_temp.grid(row=0, column=1, sticky="w")
+
+# Creates button that shows up in main window of app,
+# adds a black arrow -> and the function when
+# button is pressed
+btn_convert = Button(
+    master=window,
+    text="\N{RIGHTWARDS BLACK ARROW}",
+    command=fahrenheit_to_celsius)
+
+# Creates degrees celsius symbol next to converted number
+label_result = Label(master=window, text="\N{DEGREE CELSIUS}")
+
+# Sets location of button, entry field
+# and label for degrees celsius
+form_entry.grid(row=0, column=0, padx=10)
+btn_convert.grid(row=0, column=1, pady=10)
+label_result.grid(row=0, column=3, padx=10)
 
 # USED FOR CELSIUS TO FAHRENHEIT CONVERSION
 # Creates place for celsius field and
@@ -89,28 +123,27 @@ form_entry2.grid(row=1, column=0, padx=10)
 btn_convert2.grid(row=1, column=1, pady=10)
 label_result2.grid(row=1, column=3, padx=10)
 
-# Sets location of entry field and its
-# label using grid method
-entry_temp.grid(row=0, column=0, sticky="e")
-# sticky="e" sets entry to be at right edge of cell
-# sticky="w" sets label to be at left edge of cell
-label_temp.grid(row=0, column=1, sticky="w")
+# Creates place for celsius field and
+# celsius label
+form_entry3 = Frame(master=window)
+entry_temp3 = Entry(master=form_entry3, width=10)
+label_temp3 = Label(master=form_entry3, text="\N{DEGREE FAHRENHEIT}")
 
-# Creates button that shows up in main window of app,
-# adds a black arrow -> and the function when
-# button is pressed
-btn_convert = Button(
+# Sets location of 2nd entry field and celsius label
+entry_temp3.grid(row=2, column=0, sticky="e")
+label_temp3.grid(row=2, column=1, sticky="w")
+
+# Button for the celsius to fahrenheit conversion
+btn_convert3 = Button(
     master=window,
     text="\N{RIGHTWARDS BLACK ARROW}",
-    command=fahrenheit_to_celsius)
+    command=fahrenheit_to_kelvin)
 
-# Creates degrees celsius symbol next to converted number
-label_result = Label(master=window, text="\N{DEGREE CELSIUS}")
-
-# Sets location of button, entry field
-# and label for degrees celsius
-form_entry.grid(row=0, column=0, padx=10)
-btn_convert.grid(row=0, column=1, pady=10)
-label_result.grid(row=0, column=3, padx=10)
+# Sets location for the secondary entry field, button field
+# and the converted temp value
+label_result3 = Label(master=window, text=u"\N{DEGREE SIGN}K")
+form_entry3.grid(row=2, column=0, padx=10)
+btn_convert3.grid(row=2, column=1, pady=10)
+label_result3.grid(row=2, column=3, padx=10)
 
 window.mainloop()
